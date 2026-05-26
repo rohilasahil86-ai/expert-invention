@@ -2,7 +2,10 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from groq import Groq
 import os
-client = Groq(api_key=os.getenv("GROQ_API_KEY"))
+client = None
+
+def get_client():
+    return Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 app = Flask(__name__)
 CORS(app)
@@ -55,7 +58,7 @@ def chat():
     messages.extend(history)
     messages.append({"role": "user", "content": user_message})
     
-    response = client.chat.completions.create(
+    response = get_client.chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=messages
     )
