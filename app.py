@@ -2,10 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from groq import Groq
 import os
-client = None
 
-def get_client():
-    return Groq(api_key=os.environ.get("GROQ_API_KEY"))
+client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 
 app = Flask(__name__)
 CORS(app)
