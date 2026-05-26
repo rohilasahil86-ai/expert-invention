@@ -6,7 +6,7 @@ import os
 load_dotenv()
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
-app = Flask(_name_)
+app = Flask(__name__)
 CORS(app)
 
 menu = """
@@ -65,7 +65,7 @@ def chat():
     reply = response.choices[0].message.content
     return jsonify({"reply": reply})
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     port = int(os.environ.get('PORT', 5000))
 app.run(host='0.0.0.0', port=port)
  
