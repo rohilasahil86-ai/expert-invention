@@ -56,7 +56,7 @@ def chat():
     messages.extend(history)
     messages.append({"role": "user", "content": user_message})
     
-    response = get_client.chat.completions.create(
+    response = chat.completions.create(
         model="llama-3.3-70b-versatile",
         messages=messages
     )
